@@ -26,7 +26,7 @@ public class CollectManager : MonoBehaviour
 
     void getJob()
     {
-        if (jobList.Count < playerPaperLimit)
+        if (jobList.Count < playerPaperLimit && JobManager.canTakeJob)
         {
             GameObject temp = Instantiate(jobPrefab, new Vector3(collectPos.position.x, collectPos.position.y + paperDiff_Y, collectPos.position.z), Quaternion.identity);
             temp.transform.parent = collectPos; // add papers as child of CollectPos to move with player.

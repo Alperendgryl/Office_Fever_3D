@@ -10,7 +10,7 @@ public class BuyManager : MonoBehaviour
     public TMP_Text moneyTXT;
     private void Update()
     {
-        moneyTXT.text = money.ToString();
+        moneyTXT.text = money.ToString() + "$";
     }
     private void OnEnable()
     {

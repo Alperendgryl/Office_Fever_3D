@@ -20,20 +20,14 @@ public class EmployeeManager : MonoBehaviour
     [SerializeField] private int moneyCounter = 1;
     [SerializeField] private float moneyDiff_X = 0f;
 
-    [SerializeField] private int employeeJobLimit = 20;
+    [SerializeField] private int employeeJobLimit;
 
     public static bool canTakeJob = true;
 
     private void Update()
     {
-        if (jobList.Count < employeeJobLimit)
-        {
-            canTakeJob = true;
-        }
-        else
-        {
-            canTakeJob = false;
-        }
+        if (jobList.Count < employeeJobLimit) canTakeJob = true;
+        else canTakeJob = false;
     }
     private void Start()
     {
@@ -67,7 +61,7 @@ public class EmployeeManager : MonoBehaviour
     }
     public void GetJob()
     {
-        if (canTakeJob)
+        if (canTakeJob && jobList.Count <= employeeJobLimit)
         {
             GameObject temp = Instantiate(jobPrefab, new Vector3(deskPos.position.x, deskPos.position.y + paperDiff_Y, deskPos.position.z), Quaternion.identity);
             paperDiff_Y += 0.1f; // create space between papers

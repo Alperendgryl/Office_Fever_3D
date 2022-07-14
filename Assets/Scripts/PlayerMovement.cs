@@ -29,11 +29,18 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("isMoving", _isMoving);
         }
+
         if (Input.touchCount > 0)
         {
             _touch = Input.GetTouch(0);
             if (_touch.phase == TouchPhase.Began)
             {
+
+                if (anim.name == "Idle")
+                {
+                    anim.GetComponent<Animation>().Stop();
+                }
+
                 _dragStarted = true;
                 _isMoving = true;
                 _touchUp = _touch.position;

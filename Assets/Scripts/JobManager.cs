@@ -17,7 +17,13 @@ public class JobManager : MonoBehaviour
     [SerializeField] private int jobCounter = 1;
 
     private bool isWorking;
+    public static bool canTakeJob;
 
+    private void Update()
+    {
+        if (paperList.Count == 0) canTakeJob = false;
+        else canTakeJob = true;
+    }
     private void Start()
     {
         StartCoroutine(createJob());
@@ -45,6 +51,8 @@ public class JobManager : MonoBehaviour
                         isWorking = false;
                     }
 
+                    if (paperList.Count == 0) canTakeJob = false;
+
                     paperList.Add(tempJob);
                     jobCounter++;
                 }
@@ -62,7 +70,7 @@ public class JobManager : MonoBehaviour
         {
             Destroy(paperList[paperList.Count - 1]);
             paperList.RemoveAt(paperList.Count - 1);
-            if(paperDiff_Y > 0) paperDiff_Y -= 0.1f;
+            if (paperDiff_Y > 0) paperDiff_Y -= 0.1f;
             if (paperDiff_X > 3) paperDiff_X = 0;
         }
     }
